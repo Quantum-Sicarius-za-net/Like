@@ -36,19 +36,22 @@ public class Rate extends JavaPlugin implements Listener {
 	@Override
 	public void onDisable() {
 		PluginDescriptionFile pdfFile = this.getDescription();
-		this.logger.info(pdfFile.getName() + " Is Offline!");
+		this.logger.info(pdfFile.getName() + " Has been Disabled!");
 	}
 	 
 	@Override
 	public void onEnable() {
 		PluginDescriptionFile pdfFile = this.getDescription();
 		this.logger.info(pdfFile.getName() + " Version " + pdfFile.getVersion() +  " Has been Enabled!");
-    }
+		
+		// Register event listeners
+		getServer().getPluginManager().registerEvents(this, this);
+	}
 	
 	@EventHandler
 	public void playerInteract(PlayerInteractEntityEvent event) {
 		if (event.getRightClicked() instanceof Player) {
-			gui = new GUI((SpoutPlayer) event.getPlayer(), (Player) event.getRightClicked(), this);
+			gui = new GUI((SpoutPlayer) event.getPlayer(), (Player) event.getRightClicked(), this, this);
 		}
 	}
 			
