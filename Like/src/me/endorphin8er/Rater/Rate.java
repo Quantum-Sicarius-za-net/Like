@@ -65,93 +65,97 @@ public class Rate extends JavaPlugin implements Listener {
 	@EventHandler
 	public void buttonPress(ButtonClickEvent event){
 		
-		Player targetPlayer = player_gui.get(event.getPlayer()).isTargetPlayer();
+		Player targetPlayer = null;
+		SpoutPlayer sp_target = null;
 		
-		SpoutPlayer sp_target = (SpoutPlayer) targetPlayer;
+		if (player_gui.containsKey(event.getPlayer())) {
+			targetPlayer = player_gui.get(event.getPlayer()).isTargetPlayer();
+			sp_target = (SpoutPlayer) targetPlayer;
 		
-		// Like
-		if (player_gui.get(event.getPlayer()).isLikeButton(event.getButton())) {
-			event.getPlayer().getMainScreen().getActivePopup().close();
-			
-			// safety check
-			if (!likes.containsKey(targetPlayer)) {
-				likes.put(targetPlayer, 0);
+			// Like
+			if (player_gui.get(event.getPlayer()).isLikeButton(event.getButton())) {
+				event.getPlayer().getMainScreen().getActivePopup().close();
+				
+				// safety check
+				if (!likes.containsKey(targetPlayer)) {
+					likes.put(targetPlayer, 0);
+				}
+				
+				int likes_count = likes.get(targetPlayer) + 1;
+				
+				likes.put(targetPlayer, likes_count);
+				
+				if (sp_target.isSpoutCraftEnabled()) {
+					sp_target.sendNotification("Like", "You recieved a Like!", Material.GOLDEN_APPLE);
+				}
 			}
+			// DisLike
+			else if (player_gui.get(event.getPlayer()).isDisLikeButton(event.getButton())) {
+				event.getPlayer().getMainScreen().getActivePopup().close();
 			
-			int likes_count = likes.get(targetPlayer) + 1;
-			
-			likes.put(targetPlayer, likes_count);
-			
-			if (sp_target.isSpoutCraftEnabled()) {
-				sp_target.sendNotification("Like", "You recieved a Like!", Material.GOLDEN_APPLE);
+				// safety check
+				if (!dislikes.containsKey(targetPlayer)) {
+					dislikes.put(targetPlayer, 0);
+				}
+				
+				int dislikes_count = dislikes.get(targetPlayer) + 1;
+				
+				dislikes.put(targetPlayer, dislikes_count);
+				
+				if (sp_target.isSpoutCraftEnabled()) {
+					sp_target.sendNotification("Like", "You recieved a dis-Like!", Material.GOLDEN_APPLE);
+				}
 			}
-		}
-		// DisLike
-		else if (player_gui.get(event.getPlayer()).isDisLikeButton(event.getButton())) {
-			event.getPlayer().getMainScreen().getActivePopup().close();
-		
-			// safety check
-			if (!dislikes.containsKey(targetPlayer)) {
-				dislikes.put(targetPlayer, 0);
+			// Agree
+			else if (player_gui.get(event.getPlayer()).isAgree(event.getButton())) {
+				event.getPlayer().getMainScreen().getActivePopup().close();
+				
+				// safety check
+				if (!agrees.containsKey(targetPlayer)) {
+					agrees.put(targetPlayer, 0);
+				}
+				
+				int agrees_count = agrees.get(targetPlayer) + 1;
+				
+				agrees.put(targetPlayer, agrees_count);
+				
+				if (sp_target.isSpoutCraftEnabled()) {
+					sp_target.sendNotification("Like", "Someone agrees with you!", Material.GOLDEN_APPLE);
+				}
 			}
-			
-			int dislikes_count = dislikes.get(targetPlayer) + 1;
-			
-			dislikes.put(targetPlayer, dislikes_count);
-			
-			if (sp_target.isSpoutCraftEnabled()) {
-				sp_target.sendNotification("Like", "You recieved a dis-Like!", Material.GOLDEN_APPLE);
+			// DisAgree
+			else if (player_gui.get(event.getPlayer()).isDisAgree(event.getButton())) {
+				event.getPlayer().getMainScreen().getActivePopup().close();
+				
+				// safety check
+				if (!disagrees.containsKey(targetPlayer)) {
+					disagrees.put(targetPlayer, 0);
+				}
+				
+				int disagrees_count = disagrees.get(targetPlayer) + 1;
+				
+				disagrees.put(targetPlayer, disagrees_count);
+				
+				if (sp_target.isSpoutCraftEnabled()) {
+					sp_target.sendNotification("Like", "Someone disagrees with you!", Material.GOLDEN_APPLE);
+				}
 			}
-		}
-		// Agree
-		else if (player_gui.get(event.getPlayer()).isAgree(event.getButton())) {
-			event.getPlayer().getMainScreen().getActivePopup().close();
+			// Facepalm
+			else if (player_gui.get(event.getPlayer()).isFacePalm(event.getButton())) {
+				event.getPlayer().getMainScreen().getActivePopup().close();
 			
-			// safety check
-			if (!agrees.containsKey(targetPlayer)) {
-				agrees.put(targetPlayer, 0);
-			}
-			
-			int agrees_count = agrees.get(targetPlayer) + 1;
-			
-			agrees.put(targetPlayer, agrees_count);
-			
-			if (sp_target.isSpoutCraftEnabled()) {
-				sp_target.sendNotification("Like", "Someone agrees with you!", Material.GOLDEN_APPLE);
-			}
-		}
-		// DisAgree
-		else if (player_gui.get(event.getPlayer()).isDisAgree(event.getButton())) {
-			event.getPlayer().getMainScreen().getActivePopup().close();
-			
-			// safety check
-			if (!disagrees.containsKey(targetPlayer)) {
-				disagrees.put(targetPlayer, 0);
-			}
-			
-			int disagrees_count = disagrees.get(targetPlayer) + 1;
-			
-			disagrees.put(targetPlayer, disagrees_count);
-			
-			if (sp_target.isSpoutCraftEnabled()) {
-				sp_target.sendNotification("Like", "Someone disagrees with you!", Material.GOLDEN_APPLE);
-			}
-		}
-		// Facepalm
-		else if (player_gui.get(event.getPlayer()).isFacePalm(event.getButton())) {
-			event.getPlayer().getMainScreen().getActivePopup().close();
-		
-			// safety check
-			if (!facepalms.containsKey(targetPlayer)) {
-				facepalms.put(targetPlayer, 0);
-			}
-			
-			int facepalms_count = facepalms.get(targetPlayer) + 1;
-			
-			facepalms.put(targetPlayer, facepalms_count);
-			
-			if (sp_target.isSpoutCraftEnabled()) {
-				sp_target.sendNotification("Like", "You recieved a FacePalm!", Material.GOLDEN_APPLE);
+				// safety check
+				if (!facepalms.containsKey(targetPlayer)) {
+					facepalms.put(targetPlayer, 0);
+				}
+				
+				int facepalms_count = facepalms.get(targetPlayer) + 1;
+				
+				facepalms.put(targetPlayer, facepalms_count);
+				
+				if (sp_target.isSpoutCraftEnabled()) {
+					sp_target.sendNotification("Like", "You recieved a FacePalm!", Material.GOLDEN_APPLE);
+				}
 			}
 		}
 	}

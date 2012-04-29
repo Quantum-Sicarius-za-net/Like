@@ -1,6 +1,6 @@
 name: Like
 main: me.endorphin8er.Rater.Rate
-version: 1.3
+version: 1.3.2
 depend: [Spout]
 authors: [endorphin8er,Quantum-Sicarius]
 commands:
