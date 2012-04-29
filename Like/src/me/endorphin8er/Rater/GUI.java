@@ -3,6 +3,8 @@ package me.endorphin8er.Rater;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.getspout.commons.ChatColor;
+import org.getspout.spoutapi.gui.Button;
+import org.getspout.spoutapi.gui.GenericButton;
 import org.getspout.spoutapi.gui.GenericContainer;
 import org.getspout.spoutapi.gui.GenericLabel;
 import org.getspout.spoutapi.gui.GenericPopup;
@@ -20,13 +22,25 @@ public class GUI {
 	GenericLabel disagrees;
 	GenericLabel facepalms;
 	
+	GenericButton like;
+	GenericButton dislike;
+	GenericButton agree;
+	GenericButton disagree;
+	GenericButton facepalm;
+	
 	// Define the Rate object
 	Rate rate;
+	
+	Player target;
 
-	public GUI(SpoutPlayer sp, Player target, Plugin plugin, Rate rate_class) {
+	public GUI(SpoutPlayer sp, Player target_player, Plugin plugin, Rate rate_class) {
 		
 		rate = rate_class;
+		target = target_player;
 		
+		/*
+		 * Create all labels
+		 */
 		title = new GenericLabel(ChatColor.GREEN + target.getName());
 		title.setAnchor(WidgetAnchor.TOP_CENTER);
 		title.doResize();
@@ -46,10 +60,23 @@ public class GUI {
 		facepalms = new GenericLabel(ChatColor.AQUA + "Facepalms: " + ChatColor.WHITE + rate.Facepalms(target));
 		facepalms.setAnchor(WidgetAnchor.CENTER_CENTER);
 		
+		/*
+		 * Create all buttons
+		 */
+		
+		like = new GenericButton("Like");
+		dislike = new GenericButton("DisLike");
+		agree = new GenericButton("Agree");
+		disagree = new GenericButton("DisAgree");
+		facepalm = new GenericButton("FacePalm");
+		
 		box = new GenericContainer();
 		
-		box.addChildren(title, likes, dislikes, agrees, disagrees, facepalms);
-		box.setAnchor(WidgetAnchor.CENTER_CENTER);
+		box.addChildren(title, likes, like, dislikes, dislike, agrees, agree, disagrees, disagree, facepalms, facepalm);
+		box.setHeight(250);
+		box.setWidth(200);
+		box.setX(115);
+		box.setY(0);
 		
 		box.setDirty(true);
 		
@@ -57,5 +84,54 @@ public class GUI {
 		popup.attachWidget(plugin, box);
 		sp.getMainScreen().attachPopupScreen(popup);
 		
+	}
+	
+	public boolean isLikeButton(Button button) {
+		if (button.getText().equals("Like") && button.getPlugin() == rate) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean isDisLikeButton(Button button) {
+		if (button.getText().equals("DisLike") && button.getPlugin() == rate) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean isAgree(Button button) {
+		if (button.getText().equals("Agree") && button.getPlugin() == rate) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean isDisAgree(Button button) {
+		if (button.getText().equals("DisAgree") && button.getPlugin() == rate) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean isFacePalm(Button button) {
+		if (button.getText().equals("FacePalm") && button.getPlugin() == rate) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public Player isTargetPlayer() {
+		return target;
 	}
 }
