@@ -1,0 +1,16 @@
+name: Like
+main: me.endorphin8er.Rater.Rate
+version: 1.3
+depend: [Spout]
+authors: [endorphin8er,Quantum-Sicarius]
+commands:
+   like:
+      usage: /<command>
+   dislike:
+      usage: /<command>
+   agree:
+      usage: /<command>
+   disagree:
+      usage: /<command>
+   facepalm:
+      usage: /<command>
