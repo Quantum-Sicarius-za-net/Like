@@ -1,0 +1,386 @@
+package me.endorphin8er.Rater;
+
+import java.util.HashMap;
+import java.util.logging.Logger;
+
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.plugin.PluginDescriptionFile;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.getspout.spoutapi.player.SpoutPlayer;
+
+public class Rate extends JavaPlugin implements Listener {
+	
+	public static Rate Plugin;
+	public final Logger logger = Logger.getLogger("Minecraft");
+	int counter = 0;
+	
+	// Define the GUI object
+	GUI gui;
+	
+	// Set up likes
+	HashMap<Player, Integer> likes = new HashMap<Player, Integer>();
+	// Set up dislikes
+	HashMap<Player, Integer> dislikes = new HashMap<Player, Integer>();
+	// Set up agrees
+	HashMap<Player, Integer> agrees = new HashMap<Player, Integer>();
+	// Set up disagrees
+	HashMap<Player, Integer> disagrees = new HashMap<Player, Integer>();
+	// Set up facepalms
+	HashMap<Player, Integer> facepalms = new HashMap<Player, Integer>();
+	
+	@Override
+	public void onDisable() {
+		PluginDescriptionFile pdfFile = this.getDescription();
+		this.logger.info(pdfFile.getName() + " Is Offline!");
+	}
+	 
+	@Override
+	public void onEnable() {
+		PluginDescriptionFile pdfFile = this.getDescription();
+		this.logger.info(pdfFile.getName() + " Version " + pdfFile.getVersion() +  " Is Online!");
+    }
+	
+	@EventHandler
+	public void playerInteract(PlayerInteractEntityEvent event) {
+		if (event.getRightClicked() instanceof Player) {
+			gui = new GUI((SpoutPlayer) event.getPlayer(), (Player) event.getRightClicked(), this);
+		}
+	}
+			
+	
+	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
+		Player player = (Player) sender;
+		
+		/*
+		 * On Like Command
+		 */
+		
+		if(commandLabel.equalsIgnoreCase("like")){
+			if(args.length == 0){
+				
+				player.sendMessage("----" + ChatColor.GREEN + "Like Help" + ChatColor.WHITE + "----");
+				player.sendMessage(ChatColor.AQUA + "/like" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows This Screen!");
+				player.sendMessage(ChatColor.AQUA + "/like <player's name>" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Sends A Message To The Player That You Like Them");
+				player.sendMessage(ChatColor.AQUA + "/like amount" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows The Amount Of Likes You Have!");
+				player.sendMessage(ChatColor.AQUA + "/facepalm" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows Facepalm Commands!");
+				player.sendMessage(ChatColor.AQUA + "/dislike" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows Dislike Commands!");
+				player.sendMessage(ChatColor.AQUA + "/agree" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows 'Agree' Commands!");
+				player.sendMessage(ChatColor.AQUA + "/disagree" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows 'Disagree' Commands!");
+			}
+			if(args.length == 1){
+				if(player.getServer().getPlayer(args[0]) !=null){
+					Player targetPlayer = player.getServer().getPlayer(args[0]);
+					if(targetPlayer.isOp()){			
+						// Increment the target player's like by 1
+						likes.put(targetPlayer, +1);
+						
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Have A Like From " + ChatColor.DARK_AQUA + player.getName());
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Now Have " + counter + " Likes!");
+					}
+					else{
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Have A Like From " + ChatColor.DARK_AQUA + player.getName());
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Now Have " + counter + " Likes!");
+					}
+				}
+				if(player.isOp()){
+					// Amount parameter (Shows the amount of likes you have)
+					if(args[0].equalsIgnoreCase("amount")){
+						
+						// Safety check for null pointers
+						if (likes.containsKey(player)) {
+							// If likes are 0
+							if (likes.get(player) == 0) {
+								player.sendMessage(ChatColor.GREEN + "You have no Likes At The Moment");
+							}
+							// If likes are more than 0
+							else {
+								player.sendMessage(ChatColor.AQUA + "You Have" + likes.get(player) + "Likes!");
+							}
+						}
+						else {
+							likes.put(player, 0);
+							player.sendMessage(ChatColor.GREEN + "You have no Likes At The Moment");
+						}
+						
+					}
+					// Undo a like
+					else if(args[0].equalsIgnoreCase("done")){
+						
+						if (likes.containsKey(player)) {
+							if (likes.get(player) == 0) {
+								player.sendMessage(ChatColor.DARK_RED + "You have No Likes!");
+							}
+							else {
+								likes.put(player, -1);
+								player.sendMessage(ChatColor.BLUE + "You Have " + likes.get(player) + " Likes Left!");
+							}
+						}
+					}
+					// Show the amount of likes you have
+					else if (args[0].equalsIgnoreCase("amount")) {
+						
+						if (likes.containsKey(player)) {
+							if (likes.get(player) == 0) {
+								player.sendMessage(ChatColor.DARK_RED + "You have No Likes!");
+							}
+							else {
+								player.sendMessage(ChatColor.BLUE + "You Have " + likes.get(player) + " Likes Left!");
+							}
+						}
+					}
+					// If no arguments pass
+					else {
+						return false;
+					}
+				}
+			}
+		}
+		/*
+		 * on Facepalm command		
+		 */
+		if(commandLabel.equalsIgnoreCase("facepalm")){
+			if(args.length == 0){
+					player.sendMessage("----" + ChatColor.GREEN + "Facepalm Help" + ChatColor.WHITE + "----");
+					player.sendMessage(ChatColor.AQUA + "/facepalm" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows This Screen!");
+					player.sendMessage(ChatColor.AQUA + "/facepalm <player's name>" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Sends A Message To The Player That You facepalmed Them");
+					player.sendMessage(ChatColor.AQUA + "/facepalm amount" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows The Amount Of Facepalms You Have!");
+			}
+			if(args.length == 1){
+				if(player.getServer().getPlayer(args[0]) !=null){
+					Player targetPlayer = player.getServer().getPlayer(args[0]);
+					if(targetPlayer.isOp()){
+									
+						facepalms.put(targetPlayer, +1);
+									
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Have A Facepalm From " + ChatColor.DARK_AQUA + player.getName());
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Now Have " + facepalms.get(targetPlayer) + " Facepalms");
+					}
+					else {
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Have A Facepalm From " + ChatColor.DARK_AQUA + player.getName());
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Now Have " + facepalms.get(targetPlayer) + " Facepalms!");
+					}
+				}
+				if(player.isOp()){
+					if(args[0].equalsIgnoreCase("done")){
+									
+						if (facepalms.containsKey(player)) {
+							if (facepalms.get(player) == 0) {
+								player.sendMessage(ChatColor.DARK_RED + "You have no Facepalms!");
+							}
+							else {
+								facepalms.put(player, -1);
+							}
+						}
+									
+					}
+					// Amount
+					else if (args[0].equalsIgnoreCase("amount")){
+						if (facepalms.containsKey(player)) {
+							if (facepalms.get(player) == 0) {
+								player.sendMessage(ChatColor.BLUE + "You have no Facepalms!");
+							}
+							else {
+								player.sendMessage(ChatColor.BLUE + "You have" + facepalms.get(player) + "Facepalms!");
+							}
+						}
+					}
+					// If all parameters fail
+					else {
+						return false;
+					}
+				}
+			}
+		}
+		/*
+		 * On Dislike Command
+		 */
+		if(commandLabel.equalsIgnoreCase("dislike")) {
+			if(args.length == 0){
+				player.sendMessage("----" + ChatColor.GREEN + "Dislike Help" + ChatColor.WHITE + "----");
+				player.sendMessage(ChatColor.AQUA + "/dislike" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows This Screen!");
+				player.sendMessage(ChatColor.AQUA + "/dislike amount" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows The Amount Of Dislikes You Have");
+				player.sendMessage(ChatColor.AQUA + "/dislike <player's name>" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Sends A Message To The Player That You Disliked Them");
+			}
+			if(args.length == 1){
+				if(player.getServer().getPlayer(args[0]) !=null){
+					// Set the target player to the argument
+					Player targetPlayer = player.getServer().getPlayer(args[0]);
+					if(targetPlayer.isOp()){
+						dislikes.put(targetPlayer, +1);
+						
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Have A Dislike From " + ChatColor.DARK_AQUA + player.getName());
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Now Have " + dislikes.get(targetPlayer) + " Dislikes");
+					}
+					else {
+						// If player is not in the HashMap add him to it
+						if (!dislikes.containsKey(targetPlayer)) {
+							dislikes.put(targetPlayer, 0);
+						}
+						
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Have A Dislike From " + ChatColor.DARK_AQUA + player.getName());
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Now Have " + dislikes.get(targetPlayer) + " Dislikes!");
+					}
+				}
+				if(player.isOp()){
+					if(args[0].equalsIgnoreCase("amount")){
+						
+						if (dislikes.containsKey(player)) {
+							dislikes.put(player, 0);
+						}
+						
+						if (dislikes.get(player) == 0) {
+							player.sendMessage(ChatColor.GREEN + "You have No Dislikes At The Moment");
+						}
+						else {
+							player.sendMessage(ChatColor.AQUA + "You Have " + dislikes.get(player) + " Dislikes!");
+						}
+					}
+					else if(args[0].equalsIgnoreCase("done")){
+						if(counter <=0){
+							player.sendMessage(ChatColor.DARK_RED + "There Are No Dislikes!");
+						}
+						else{
+							counter--;
+							if(counter == 0){
+								player.sendMessage(ChatColor.BLUE + "There Are No Dislikes left!");
+							}
+							else if(counter == 1){
+								player.sendMessage(ChatColor.BLUE + "You Have A Dislike Left!");
+							}	
+							else{
+								player.sendMessage(ChatColor.BLUE + "You Have " + counter + " Dislikes!");
+						    }
+						}
+					}
+					else {
+						
+					}
+				}
+			}
+		}
+		/*
+		 * On agree command
+		 */
+		if(commandLabel.equalsIgnoreCase("agree")){
+			if(args.length == 0){
+				player.sendMessage("----" + ChatColor.GREEN + "Agree Help" + ChatColor.WHITE + "----");
+				player.sendMessage(ChatColor.AQUA + "/agree" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows This Screen!");
+				player.sendMessage(ChatColor.AQUA + "/agree amount" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows The Amount Of Agrees You Have");
+				player.sendMessage(ChatColor.AQUA + "/agree <player's name>" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Sends A Message To The Player That You Agree With Them");
+			}
+			if(args.length == 1){
+				if(player.getServer().getPlayer(args[0]) !=null){
+					Player targetPlayer = player.getServer().getPlayer(args[0]);
+					if(targetPlayer.isOp()){
+						counter++;
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Have A 'Agree' From " + ChatColor.DARK_AQUA + player.getName());
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Now Have " + counter + " People That Agree With You");
+					}
+					else{
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Have A 'Agree' From " + ChatColor.DARK_AQUA + player.getName());
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Now Have " + counter + " People That Agree With You!");
+					}
+				}
+				if(player.isOp()){
+					if(args[0].equalsIgnoreCase("amount")){
+						if(counter == 0){
+							player.sendMessage(ChatColor.GREEN + "There Are No People That Agree With You At The Moment");
+						}
+						else if(counter == 1){
+							player.sendMessage(ChatColor.AQUA + "You Have 1 Person That Agrees!");
+						}
+						else{
+							player.sendMessage(ChatColor.AQUA + "You Have " + counter + " People That Agree!");
+						}
+					}	
+					else if(args[0].equalsIgnoreCase("done")){
+						if(counter <=0){
+							player.sendMessage(ChatColor.DARK_RED + "There Are No People That Agree's!");
+						}
+						else {
+							counter--;
+							if(counter == 0){
+								player.sendMessage(ChatColor.BLUE + "There Are No People That Agree With You left!");
+							}
+							else if(counter == 1){
+								player.sendMessage(ChatColor.BLUE + "You Have A 'Agree' Left!");
+							}
+							else{
+								player.sendMessage(ChatColor.BLUE + "You Have " + counter + " People That Agree!");
+							}
+						}
+					}
+					else {
+						return false;
+					}
+				}
+			}
+		}
+		/*
+		 * On disagree command
+		 */
+		if(commandLabel.equalsIgnoreCase("disagree")){
+			if(args.length == 0){
+				player.sendMessage("----" + ChatColor.GREEN + "Disagree Help" + ChatColor.WHITE + "----");
+				player.sendMessage(ChatColor.AQUA + "/disagree" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows This Screen!");
+				player.sendMessage(ChatColor.AQUA + "/disagree amount" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows The Amount Of Disagrees You Have");
+				player.sendMessage(ChatColor.AQUA + "/disagree <player's name>" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Sends A Message To The Player That You Disagree With Them");
+			}
+			if(args.length == 1){
+				if(player.getServer().getPlayer(args[0]) !=null){
+					Player targetPlayer = player.getServer().getPlayer(args[0]);
+					if(targetPlayer.isOp()){
+						counter++;
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Have A 'Disagree' From " + ChatColor.DARK_AQUA + player.getName());
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Now Have " + counter + " People That Disagree With You");
+					}
+					else{
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Have A 'Disagree' From " + ChatColor.DARK_AQUA + player.getName());
+						targetPlayer.sendMessage(ChatColor.GREEN + "You Now Have " + counter + " People That Disagree With You!");
+					}
+				}
+				if(player.isOp()){
+					if(args[0].equalsIgnoreCase("amount")){
+						if(counter == 0){
+							player.sendMessage(ChatColor.GREEN + "There Are No People That Disagree With You At The Moment");
+						}
+						else if(counter == 1){
+							player.sendMessage(ChatColor.AQUA + "You Have 1 Person That Disagrees!");
+						}
+						else{
+							player.sendMessage(ChatColor.AQUA + "You Have " + counter + " People That Disagree!");
+						}
+					}
+					else if(args[0].equalsIgnoreCase("done")){
+						if(counter <=0){
+							player.sendMessage(ChatColor.DARK_RED + "There Are No People That Disagree's!");
+						}
+						else{
+							counter--;
+							if(counter == 0){
+								player.sendMessage(ChatColor.BLUE + "There Are No People That Disagree With You left!");
+							}
+							else if(counter == 1){
+								player.sendMessage(ChatColor.BLUE + "You Have A 'Disagree' Left!");
+							}
+							else{
+								player.sendMessage(ChatColor.BLUE + "You Have " + counter + " People That Disagree!");
+
+							}
+						}
+					}
+					else {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
+	}
+}
