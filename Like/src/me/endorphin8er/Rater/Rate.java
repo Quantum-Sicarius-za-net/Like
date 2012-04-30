@@ -103,6 +103,7 @@ public class Rate extends JavaPlugin implements Listener {
 				likes.put(targetPlayer, likes_count);
 				
 				if (sp_target.isSpoutCraftEnabled()) {
+					// These notifications may not be longer than 26 characters
 					sp_target.sendNotification("Like", "You recieved a Like!", Material.GOLDEN_APPLE);
 				}
 			}
@@ -120,6 +121,7 @@ public class Rate extends JavaPlugin implements Listener {
 				dislikes.put(targetPlayer, dislikes_count);
 				
 				if (sp_target.isSpoutCraftEnabled()) {
+					// These notifications may not be longer than 26 characters
 					sp_target.sendNotification("Like", "You recieved a dis-Like!", Material.GOLDEN_APPLE);
 				}
 			}
@@ -137,7 +139,8 @@ public class Rate extends JavaPlugin implements Listener {
 				agrees.put(targetPlayer, agrees_count);
 				
 				if (sp_target.isSpoutCraftEnabled()) {
-					sp_target.sendNotification("Like", "Someone agrees with you!", Material.GOLDEN_APPLE);
+					// These notifications may not be longer than 26 characters
+					sp_target.sendNotification("Like", "You were Agreed!", Material.GOLDEN_APPLE);
 				}
 			}
 			// DisAgree
@@ -154,7 +157,8 @@ public class Rate extends JavaPlugin implements Listener {
 				disagrees.put(targetPlayer, disagrees_count);
 				
 				if (sp_target.isSpoutCraftEnabled()) {
-					sp_target.sendNotification("Like", "Someone disagrees with you!", Material.GOLDEN_APPLE);
+					// These notifications may not be longer than 26 characters
+					sp_target.sendNotification("Like", "You were Disagreed!", Material.GOLDEN_APPLE);
 				}
 			}
 			// Facepalm
@@ -171,6 +175,7 @@ public class Rate extends JavaPlugin implements Listener {
 				facepalms.put(targetPlayer, facepalms_count);
 				
 				if (sp_target.isSpoutCraftEnabled()) {
+					// These notifications may not be longer than 26 characters
 					sp_target.sendNotification("Like", "You recieved a FacePalm!", Material.GOLDEN_APPLE);
 				}
 			}
@@ -248,6 +253,8 @@ public class Rate extends JavaPlugin implements Listener {
 				player.sendMessage(ChatColor.AQUA + "/dislike" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows Dislike Commands!");
 				player.sendMessage(ChatColor.AQUA + "/agree" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows 'Agree' Commands!");
 				player.sendMessage(ChatColor.AQUA + "/disagree" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows 'Disagree' Commands!");
+			
+				return true;
 			}
 			if(args.length == 1){
 				if(player.getServer().getPlayer(args[0]) !=null){
@@ -275,6 +282,8 @@ public class Rate extends JavaPlugin implements Listener {
 						targetPlayer.sendMessage(ChatColor.GREEN + "You Have A Like From " + ChatColor.DARK_AQUA + player.getName());
 						targetPlayer.sendMessage(ChatColor.GREEN + "You Now Have " + likes.get(targetPlayer) + " Likes!");
 					}
+					
+					return true;
 				}
 				if(player.isOp()){
 					// Amount parameter (Shows the amount of likes you have)
@@ -290,8 +299,10 @@ public class Rate extends JavaPlugin implements Listener {
 						}
 						// If likes are more than 0
 						else {
-							player.sendMessage(ChatColor.AQUA + "You Have" + likes.get(player) + "Likes!");
+							player.sendMessage(ChatColor.AQUA + "You Have " + likes.get(player) + " Likes!");
 						}
+						
+						return true;
 						
 					}
 					// Undo a like
@@ -310,24 +321,8 @@ public class Rate extends JavaPlugin implements Listener {
 							likes.put(player, likes_count);
 							player.sendMessage(ChatColor.BLUE + "You Have " + likes.get(player) + " Likes Left!");
 						}
-					}
-					// Show the amount of likes you have
-					else if (args[0].equalsIgnoreCase("amount")) {
-						// Safety check
-						if (!likes.containsKey(player)) {
-							likes.put(player, 0);
-						}
 						
-						if (likes.get(player) == 0) {
-							player.sendMessage(ChatColor.DARK_RED + "You have No Likes!");
-						}
-						else {
-							player.sendMessage(ChatColor.BLUE + "You Have " + likes.get(player) + " Likes Left!");
-						}
-					}
-					// If no arguments pass
-					else {
-						return false;
+						return true;
 					}
 				}
 			}
@@ -341,6 +336,8 @@ public class Rate extends JavaPlugin implements Listener {
 					player.sendMessage(ChatColor.AQUA + "/facepalm" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows This Screen!");
 					player.sendMessage(ChatColor.AQUA + "/facepalm <player's name>" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Sends A Message To The Player That You facepalmed Them");
 					player.sendMessage(ChatColor.AQUA + "/facepalm amount" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows The Amount Of Facepalms You Have!");
+			
+					return true;
 			}
 			if(args.length == 1){
 				if(player.getServer().getPlayer(args[0]) !=null){
@@ -368,6 +365,8 @@ public class Rate extends JavaPlugin implements Listener {
 						targetPlayer.sendMessage(ChatColor.GREEN + "You Have A Facepalm From " + ChatColor.DARK_AQUA + player.getName() + ChatColor.GREEN + "He is not an OP");
 						targetPlayer.sendMessage(ChatColor.GREEN + "You Now Have " + facepalms.get(targetPlayer) + " Facepalms!");
 					}
+					
+					return true;
 				}
 				if(player.isOp()){
 					if(args[0].equalsIgnoreCase("done")){
@@ -387,6 +386,8 @@ public class Rate extends JavaPlugin implements Listener {
 							facepalms.put(player, facepalms_count);
 							player.sendMessage(ChatColor.BLUE + "You have " + facepalms.get(player) + " Facepalms!");
 						}
+						
+						return true;
 									
 					}
 					// Amount
@@ -402,10 +403,8 @@ public class Rate extends JavaPlugin implements Listener {
 						else {
 							player.sendMessage(ChatColor.BLUE + "You have " + facepalms.get(player) + " Facepalms!");
 						}
-					}
-					// If all parameters fail
-					else {
-						return false;
+						
+						return true;
 					}
 				}
 			}
@@ -419,6 +418,8 @@ public class Rate extends JavaPlugin implements Listener {
 				player.sendMessage(ChatColor.AQUA + "/dislike" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows This Screen!");
 				player.sendMessage(ChatColor.AQUA + "/dislike amount" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows The Amount Of Dislikes You Have");
 				player.sendMessage(ChatColor.AQUA + "/dislike <player's name>" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Sends A Message To The Player That You Disliked Them");
+			
+				return true;
 			}
 			if(args.length == 1){
 				if(player.getServer().getPlayer(args[0]) !=null){
@@ -446,6 +447,8 @@ public class Rate extends JavaPlugin implements Listener {
 						targetPlayer.sendMessage(ChatColor.GREEN + "You Have A Dislike From " + ChatColor.DARK_AQUA + player.getName() + ChatColor.GREEN + " He is not an OP");
 						targetPlayer.sendMessage(ChatColor.GREEN + "You Now Have " + dislikes.get(targetPlayer) + " Dislikes!");
 					}
+					
+					return true;
 				}
 				if(player.isOp()){
 					if(args[0].equalsIgnoreCase("amount")){
@@ -461,6 +464,8 @@ public class Rate extends JavaPlugin implements Listener {
 						else {
 							player.sendMessage(ChatColor.AQUA + "You Have " + dislikes.get(player) + " Dislikes!");
 						}
+						
+						return true;
 					}
 					else if(args[0].equalsIgnoreCase("done")){
 						
@@ -479,10 +484,9 @@ public class Rate extends JavaPlugin implements Listener {
 							dislikes.put(player, dilikes_count);
 							player.sendMessage(ChatColor.AQUA + "You Have " + dislikes.get(player) + " Dislikes!");
 						}
+						
+						return true;
 
-					}
-					else {
-						return false;
 					}
 				}
 			}
@@ -496,6 +500,8 @@ public class Rate extends JavaPlugin implements Listener {
 				player.sendMessage(ChatColor.AQUA + "/agree" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows This Screen!");
 				player.sendMessage(ChatColor.AQUA + "/agree amount" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows The Amount Of Agrees You Have");
 				player.sendMessage(ChatColor.AQUA + "/agree <player's name>" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Sends A Message To The Player That You Agree With Them");
+			
+				return true;
 			}
 			if(args.length == 1){
 				if(player.getServer().getPlayer(args[0]) !=null){
@@ -506,7 +512,7 @@ public class Rate extends JavaPlugin implements Listener {
 							agrees.put(targetPlayer, 0);
 						}
 						
-						int agrees_count = agrees.get(player) +1;
+						int agrees_count = agrees.get(targetPlayer) +1;
 						
 						agrees.put(targetPlayer, agrees_count);
 						
@@ -523,6 +529,8 @@ public class Rate extends JavaPlugin implements Listener {
 						targetPlayer.sendMessage(ChatColor.GREEN + "You Have A 'Agree' From " + ChatColor.DARK_AQUA + player.getName() + ChatColor.GREEN + " He is not an OP");
 						targetPlayer.sendMessage(ChatColor.GREEN + "You Now Have " + agrees.get(targetPlayer) + " People That Agree With You!");
 					}
+					
+					return true;
 				}
 				if(player.isOp()){
 					if(args[0].equalsIgnoreCase("amount")){
@@ -538,6 +546,8 @@ public class Rate extends JavaPlugin implements Listener {
 						else{
 							player.sendMessage(ChatColor.AQUA + "You Have " + agrees.get(player) + " People That Agree!");
 						}
+						
+						return true;
 					}	
 					else if(args[0].equalsIgnoreCase("done")){
 						
@@ -556,9 +566,8 @@ public class Rate extends JavaPlugin implements Listener {
 							agrees.put(player, agrees_count);
 							player.sendMessage(ChatColor.AQUA + "You Have " + agrees.get(player) + " People That Agree!");
 						}
-					}
-					else {
-						return false;
+						
+						return true;
 					}
 				}
 			}
@@ -572,6 +581,8 @@ public class Rate extends JavaPlugin implements Listener {
 				player.sendMessage(ChatColor.AQUA + "/disagree" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows This Screen!");
 				player.sendMessage(ChatColor.AQUA + "/disagree amount" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Shows The Amount Of Disagrees You Have");
 				player.sendMessage(ChatColor.AQUA + "/disagree <player's name>" + ChatColor.WHITE + " | " + ChatColor.GREEN + "Sends A Message To The Player That You Disagree With Them");
+				
+				return true;
 			}
 			if(args.length == 1) {
 				if(player.getServer().getPlayer(args[0]) !=null){
@@ -599,6 +610,8 @@ public class Rate extends JavaPlugin implements Listener {
 						targetPlayer.sendMessage(ChatColor.GREEN + "You Have A 'Disagree' From " + ChatColor.DARK_AQUA + player.getName() + " He is not an OP");
 						targetPlayer.sendMessage(ChatColor.GREEN + "You Now Have " + disagrees.get(targetPlayer) + " People That Disagree With You!");
 					}
+					
+					return true;
 				}
 				if(player.isOp()){
 					if(args[0].equalsIgnoreCase("amount")){
@@ -614,6 +627,8 @@ public class Rate extends JavaPlugin implements Listener {
 						else {
 							player.sendMessage(ChatColor.AQUA + "You Have " + disagrees.get(player) + " People That Disagree!");
 						}
+						
+						return true;
 						
 					}
 					else if(args[0].equalsIgnoreCase("done")){
@@ -632,14 +647,13 @@ public class Rate extends JavaPlugin implements Listener {
 							disagrees.put(player, disagrees_count);
 							player.sendMessage(ChatColor.BLUE + "You Have " + disagrees.get(player) + " People That Disagree!");
 						}
+						
+						return true;
 
-					}
-					else {
-						return false;
 					}
 				}
 			}
 		}
-		return true;
+		return false;
 	}
 }
