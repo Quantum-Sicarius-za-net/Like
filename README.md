@@ -17,7 +17,7 @@ Installation
 Credits
 -------
 [![Quantum-Sicarius](http://www.gravatar.com/avatar/cbcdbeb17461fb68c27befee29880127.png)](http://forums.spout.org/members/quantumsicarius.1017/)
-[![IgnianSoft](http://www.gravatar.com/avatar/d129648e9d32e32192659132b9811b8d.png)](http://software.ignian.com)
+[![Guy_de_Siguro](http://www.gravatar.com/avatar/7962fc6e594821902af1f0752f34bf48.png)](http://forums.spout.org/members/guy_de_siguro.2464/)
 [![endorphin8er](http://forums.spout.org/data/avatars/l/5/5584.jpg?1334035159)](http://forums.spout.org/members/endorphin8er.5584/)
 
 [Spout Wiki]: http://wiki.spout.org
