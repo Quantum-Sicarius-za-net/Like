@@ -42,16 +42,30 @@ Also, feel free to copy and paste this into your signature to get people here
 If you fell the need to, heres a donation button:
 [center][url=https://www.paypal.com/us/cgi-bin/webscr?cmd=_flow&SESSION=R7wS_QaP1SiRgHXXqyz5vTvtVSZVGC5kQVxWtsX5JxtzaoCSuAgNaumTn-4&dispatch=5885d80a13c0db1f8e263663d3faee8dcbcd55a50598f04d34b4bf5056870803][img]https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif[/img][/url][/center]
 
-[fieldset=100|Team:] [USER=5584]endorphin8er[/USER] - Founder
- [USER=1017]QuantumSicarius[/USER] - GUI [/fieldset]
+[fieldset=100|Team:] 
+[USER=5584]endorphin8er[/USER] - Founder
+[USER=1017]QuantumSicarius[/USER] - GUI [/fieldset]
 [spoiler=Changelog]
-Version 1.3.2: added confirmation message when you like, agree, etc.
-Version 1.3.1: added GUI, right click the player.
-Version 1.2: added a 'disagree' option
-Version 1.2: added an 'agree' option
-Version 1.2: added a 'dislike' option
-Version 1.2: un-seen bugs fixed
-Version 1.1: added 'facepalm' option
-Version 1.0: Normal users can not like them selves.
-Version 1.0: Plugin released.
+## v1.3.3
+* Fixed more null pointers and errors
+* Fixed chat spam
+
+## v1.3.2
+* Fixed a null pointer bug with buttons
+
+## v1.3.1
+* Added GUI, right click the player.
+
+## v1.2
+* Un-seen bugs fixed
+* Added a 'dislike' option
+* Added an 'agree' option
+* Added a 'disagree' option
+
+## v1.1
+* Added 'facepalm' option
+
+## v1.0
+* Plugin released
+* Normal users can not like them selves.
 [/spoiler]
