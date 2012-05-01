@@ -1,0 +1,53 @@
+[img]http://www.hawnutor.org/image/3UyO4HS.jpg[/img]
+[fieldset=100|Links] Download [img]http://www.pressbot.net/default2/images/icon-kat-misc.png[/img] Old Downloads [img]http://www.pressbot.net/default2/images/icon-kat-misc.png[/img] Issues [img]http://www.pressbot.net/default2/images/icon-kat-misc.png[/img] Feature Requests [img]http://www.pressbot.net/default2/images/icon-kat-misc.png[/img] Source [/fieldset]Like is a simple plugin to show who likes you and how may likes you have. It allows ALL players to see what users like them and how many likes they have total. Each user has the commands to...
+see the commands
+like/dislike/agree/disagree/facepalm other players
+see how many likes they have
+[spoiler=Commands]
+/like : Shows all of the commands
+/like <player name> : Likes the player
+/like amount : Shows the amount of likes you have
+/like done : (OP only) clears a like that you have
+/facepalm : shows all of the facepalm commands
+/facepalm <player> :facepalms that player
+/facepalm amount : shows how many facepalms you have
+/facepalm done : Op only, deletes one facepalm
+/dislike : shows dislike options
+/dislike <player> : dislike the player
+/dislike done: op only: Gets rid of 1 dislike
+/dislike amount : shows amount of dislikes you have
+/agree : shows agree commands
+/agree <player> : agrees with the player
+/agree done : gets rid of 1 'agree'
+/agree amount : shows the amount of people that agree with you
+/disagree : shows disagree commands
+/disagree <player>: disagree with the player
+/disagree done : gets rid of 1 disagree
+/disagree amount : shows how many disagrees you have
+[/spoiler]
+OP's have all the same base command with 1 other command (/like done)
+/like done gets rid of 1 like (becuase op's will probably get liked a lot from wana be moderators).
+
+Leave any comments if you do have any errors (use the "code" tag) and let me know of things you want added to this plugin. I do read all and i will try to respond to each person.
+Not much else to say. Leave a like if you want 
+
+Also, feel free to copy and paste this into your signature to get people here
+
+
+If you fell the need to, heres a donation button:
+
+
+
+[fieldset=100|Team:]  [USER=5584]endorphin8er[/USER] - Founder
+ [USER=1017]QuantumSicarius[/USER] - GUI [/fieldset]
+[spoiler=Changelog]
+Version 1.3.2: added confirmation message when you like, agree, etc.
+Version 1.3.1: added GUI, right click the player.
+Version 1.2: added a 'disagree' option
+Version 1.2: added an 'agree' option
+Version 1.2: added a 'dislike' option
+Version 1.2: un-seen bugs fixed
+Version 1.1: added 'facepalm' option
+Version 1.0: Normal users can not like them selves.
+Version 1.0: Plugin released.
+[/spoiler]
