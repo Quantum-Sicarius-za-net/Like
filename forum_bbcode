@@ -1,5 +1,5 @@
 [img]http://www.hawnutor.org/image/3UyO4HS.jpg[/img]
-[fieldset=100|Links] [b][size=+2][url=https://github.com/downloads/Quantum-Sicarius-za-net/Like/Like-v1.3.2.jar]Download[/url][/size] [img]http://www.pressbot.net/default2/images/icon-kat-misc.png[/img] [url=https://github.com/Quantum-Sicarius-za-net/Like/downloads]Old Downloads[/url] [img]http://www.pressbot.net/default2/images/icon-kat-misc.png[/img] [url=https://github.com/Quantum-Sicarius-za-net/Like/issues]Issues[/url] [img]http://www.pressbot.net/default2/images/icon-kat-misc.png[/img] [url=https://github.com/Quantum-Sicarius-za-net/Like/issues]Feature Requests[/url] [img]http://www.pressbot.net/default2/images/icon-kat-misc.png[/img] [url=https://github.com/Quantum-Sicarius-za-net/Like]Source[/url] [/b][/fieldset]Like is a simple plugin to show who likes you and how may likes you have. It allows ALL players to see what users like them and how many likes they have total. Each user has the commands to...
+[fieldset=100|Links] [b][size=+2][url=https://github.com/downloads/Quantum-Sicarius-za-net/Like/Like-v1.3.2.jar]Download[/url][/size] [img]http://www.pressbot.net/default2/images/icon-kat-misc.png[/img] [url=https://github.com/Quantum-Sicarius-za-net/Like/downloads]Old Downloads[/url] [img]http://www.pressbot.net/default2/images/icon-kat-misc.png[/img] [url=https://github.com/Quantum-Sicarius-za-net/Like/issues]Issues[/url] [img]http://www.pressbot.net/default2/images/icon-kat-misc.png[/img] [url=https://github.com/Quantum-Sicarius-za-net/Like/issues]Feature Requests[/url] [img]http://www.pressbot.net/default2/images/icon-kat-misc.png[/img] [url=https://github.com/Quantum-Sicarius-za-net/Like]Source[/url] [/b][/fieldset][center]Like is a simple plugin to show who likes you and how may likes you have. It allows ALL players to see what users like them and how many likes they have total. Each user has the commands to... [/center]
 [list]
 [*]see the commands
 [*]like/dislike/agree/disagree/facepalm other players
@@ -30,19 +30,19 @@
 [/list]
 [/spoiler]
 OP's have all the same base command with 1 other command (/like done)
-/like done gets rid of 1 like (becuase op's will probably get liked a lot from wana be moderators).
+/like done gets rid of 1 like (because op's will probably get liked a lot from wanna be moderators).
 
-Leave any comments if you do have any errors (use the "code" tag) and let me know of things you want added to this plugin. I do read all and i will try to respond to each person.
+Leave any comments if you do have any errors (use the "code" tag) and let me know of things you want added to this plugin. I do read all and I will try to respond to each person.
 Not much else to say. Leave a like if you want 
 
 Also, feel free to copy and paste this into your signature to get people here
-
+[center][url=http://forums.spout.org/threads/fun-like-cb-1-2-5-r1.2461/][img]http://mag.racked.eu/mcimage/5491gkr/Achievement++get%21/Liked/mca.png[/img][/url][/center]
+[code][url=http://forums.spout.org/threads/fun-like-cb-1-2-5-r1.2461/][img]http://mag.racked.eu/mcimage/5491gkr/Achievement++get%21/Liked/mca.png[/img][/url][/code]
 
 If you fell the need to, heres a donation button:
+[center][url=https://www.paypal.com/us/cgi-bin/webscr?cmd=_flow&SESSION=R7wS_QaP1SiRgHXXqyz5vTvtVSZVGC5kQVxWtsX5JxtzaoCSuAgNaumTn-4&dispatch=5885d80a13c0db1f8e263663d3faee8dcbcd55a50598f04d34b4bf5056870803][img]https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif[/img][/url][/center]
 
-
-
-[fieldset=100|Team:]  [USER=5584]endorphin8er[/USER] - Founder
+[fieldset=100|Team:] [USER=5584]endorphin8er[/USER] - Founder
  [USER=1017]QuantumSicarius[/USER] - GUI [/fieldset]
 [spoiler=Changelog]
 Version 1.3.2: added confirmation message when you like, agree, etc.
