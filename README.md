@@ -11,7 +11,6 @@ Installation
 * The GUI also requires that the clients are using the [Spoutcraft][Spout Link] client mod  ([Download here][Get Spout])
 * Drag and drop SpoutPlugin into your plugins directory
 * Drag and drop Like.jar into your plugin directory
-* Start the server
 * Restart server (DO NOT RELOAD!!!) [Why don't reload?][Reload]
 
 Credits
