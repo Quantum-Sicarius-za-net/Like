@@ -1,3 +1,7 @@
+## v1.4.0
+* Ranks now save
+* New command, /arg rank (Shows the player with the most of that type)
+
 ## v1.3.3
 * Fixed more null pointers and errors
 * Fixed chat spam
