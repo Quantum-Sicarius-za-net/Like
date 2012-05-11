@@ -1,0 +1,23 @@
+## v1.3.3
+* Fixed more null pointers and errors
+* Fixed chat spam
+
+## v1.3.2
+* Fixed a null pointer bug with buttons
+
+## v1.3.1 
+* Added GUI, right click the player.
+
+## v1.2 
+* Un-seen bugs fixed
+* Added a 'dislike' option
+* Added an 'agree' option
+* Added a 'disagree' option
+
+## v1.1
+* Added 'facepalm' option
+
+## v1.0
+* Plugin released
+* Normal users can not like them selves.
+
