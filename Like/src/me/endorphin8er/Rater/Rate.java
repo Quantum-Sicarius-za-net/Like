@@ -196,7 +196,7 @@ public class Rate extends JavaPlugin implements Listener {
 				event.getPlayer().getMainScreen().getActivePopup().close();
 			
 				// safety check
-				if (!dislikes.containsKey(targetPlayer)) {
+				if (!dislikes.containsKey(targetPlayer.getName())) {
 					dislikes.put(targetPlayer.getName(), 0);
 				}
 				
