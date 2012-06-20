@@ -166,6 +166,11 @@ public class Rate extends JavaPlugin implements Listener {
 	@EventHandler
 	public void buttonPress(ButtonClickEvent event){
 		
+		// Make sure it relates to this plugin
+		if (event.getButton().getPlugin() != this) {
+			return;
+		}
+		
 		Player targetPlayer = null;
 		SpoutPlayer sp_target = null;
 		
@@ -320,6 +325,12 @@ public class Rate extends JavaPlugin implements Listener {
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
+		if (sender instanceof Player) {
+		} else {
+			sender.sendMessage("You Must be a player to use this command!");
+			return false;
+		}
+		
 		Player player = (Player) sender;
 		
 		/*

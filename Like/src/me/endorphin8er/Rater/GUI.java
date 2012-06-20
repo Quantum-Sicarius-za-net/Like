@@ -17,9 +17,9 @@ along with Like.  If not, see http://www.gnu.org/licenses/.
 
 package me.endorphin8er.Rater;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import org.getspout.commons.ChatColor;
 import org.getspout.spoutapi.gui.Button;
 import org.getspout.spoutapi.gui.GenericButton;
 import org.getspout.spoutapi.gui.GenericContainer;
@@ -104,7 +104,7 @@ public class GUI {
 	}
 	
 	public boolean isLikeButton(Button button) {
-		if (button.getText().equals("Like") && button.getPlugin() == rate) {
+		if (button == like) {
 			return true;
 		}
 		else {
@@ -113,7 +113,7 @@ public class GUI {
 	}
 	
 	public boolean isDisLikeButton(Button button) {
-		if (button.getText().equals("DisLike") && button.getPlugin() == rate) {
+		if (button == dislike) {
 			return true;
 		}
 		else {
@@ -122,7 +122,7 @@ public class GUI {
 	}
 	
 	public boolean isAgree(Button button) {
-		if (button.getText().equals("Agree") && button.getPlugin() == rate) {
+		if (button == agree) {
 			return true;
 		}
 		else {
@@ -131,7 +131,7 @@ public class GUI {
 	}
 	
 	public boolean isDisAgree(Button button) {
-		if (button.getText().equals("DisAgree") && button.getPlugin() == rate) {
+		if (button == disagree) {
 			return true;
 		}
 		else {
@@ -140,7 +140,7 @@ public class GUI {
 	}
 	
 	public boolean isFacePalm(Button button) {
-		if (button.getText().equals("FacePalm") && button.getPlugin() == rate) {
+		if (button == facepalm) {
 			return true;
 		}
 		else {
